@@ -13,10 +13,12 @@
 
     <!-- 种类 -->
     <div class="types">
-      <types-item v-for="item in types"
-                  :key="item.ico"
-                  :ico="item.ico"
-                  :txt="item.txt" @toList="toList(item)"></types-item>
+      <types-item 
+        v-for="item in types"
+        :key="item.ico"
+        :ico="item.ico"
+        :txt="item.txt" @toList="toList(item)">
+      </types-item>
     </div>
 
     <!-- 横线分隔条 -->
@@ -25,10 +27,12 @@
     <!-- 附近商家 -->
     <div class="nearby">
       <title-bar txt="附近商家"></title-bar>
-      <seller-list-item v-for="item in indexList"
-                        :key="item.name"
-                        :data="item"
-                        @toRestaurant="toRestaurant()"></seller-list-item>
+      <seller-list-item 
+        v-for="item in indexList"
+        :key="item.name"
+        :data="item"
+        @toRestaurant="toRestaurant()">
+      </seller-list-item>
     </div>
 
     <tab-bar></tab-bar>
