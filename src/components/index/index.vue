@@ -65,41 +65,42 @@ export default {
           pic: require('./img/swipe/6.png')
         }
       ],
-      types: [
-        {
-          ico: require('./img/types/types (7).png'),
-          txt: '美食'
-        },
-        {
-          ico: require('./img/types/types (0).png'),
-          txt: '美团超市'
-        },
-        {
-          ico: require('./img/types/types (1).png'),
-          txt: '生鲜果蔬'
-        },
-        {
-          ico: require('./img/types/types (5).png'),
-          txt: '甜点饮品'
-        },
-        {
-          ico: require('./img/types/types (4).png'),
-          txt: '正餐优选'
-        },
-        {
-          ico: require('./img/types/types (2).png'),
-          txt: '美团专送'
-        },
-        {
-          ico: require('./img/types/types (3).png'),
-          txt: '能量西餐'
-        },
-        {
-          ico: require('./img/types/types (6).png'),
-          txt: '精品小吃'
-        }
-      ],
-      indexList: []
+      // types: [
+      //   {
+      //     ico: require('./img/types/types (7).png'),
+      //     txt: '美食'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (0).png'),
+      //     txt: '美团超市'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (1).png'),
+      //     txt: '生鲜果蔬'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (5).png'),
+      //     txt: '甜点饮品'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (4).png'),
+      //     txt: '正餐优选'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (2).png'),
+      //     txt: '美团专送'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (3).png'),
+      //     txt: '能量西餐'
+      //   },
+      //   {
+      //     ico: require('./img/types/types (6).png'),
+      //     txt: '精品小吃'
+      //   }
+      // ],
+      indexList: [],
+      types: []
     }
   },
   props: {},
@@ -117,11 +118,18 @@ export default {
     },
     // 初始化列表数据
     _initIndexListData () {
-      axios.get('/api/indexList').then(res => {
-        // console.log(res)
+      axios.get('http://localhost:3000/api/indexList').then(res => {
         if (res.data.code === 0) {
           this.indexList = res.data.data.data.poilist
         }
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    _headerList () {
+      axios.get('http://localhost:3000/api/titleList').then(res => {
+        this.types = res.data.list
+        console.log(this.types, '----------types---------')
       }).catch(err => {
         console.log(err)
       })
@@ -132,6 +140,7 @@ export default {
   created () {
     // 初始化列表数据
     this._initIndexListData()
+    this._headerList()
   },
   mounted () {},
   destroyed () {}
