@@ -118,17 +118,16 @@ export default {
     },
     // 初始化列表数据
     _initIndexListData () {
-      axios.get('http://localhost:3000/api/indexList').then(res => {
-        if (res.data.code === 0) {
-          this.indexList = res.data.data.data.poilist
-        }
+      axios.get('http://localhost:3000/prodcutionList').then(res => {
+        this.indexList = res.data.data.data.poilist
       }).catch(err => {
         console.log(err)
       })
     },
     _headerList () {
-      axios.get('http://localhost:3000/api/titleList').then(res => {
-        this.types = res.data.list
+      axios.get('http://localhost:3000/titleList').then(res => {
+        console.log(res, '----res-----')
+        this.types = res.data.data
         console.log(this.types, '----------types---------')
       }).catch(err => {
         console.log(err)
